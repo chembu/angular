@@ -10,7 +10,7 @@ of the code in this cookbook.
 
 {@a app-wide-dependencies}
 
-## Application-wide dependencies
+## Application-wide dependencies test
 Register providers for dependencies used throughout the application in the root application component, `AppComponent`.
 
 The following example shows importing and registering
