@@ -1,4 +1,4 @@
-# Animation Basics
+# Animation basics
 
 Animation provides the illusion of motion: elements change styling over time.
 
@@ -24,7 +24,6 @@ The main Angular modules for animations are **@angular/animations** and **@angul
 
 If you want to create route-based animations that kick off when the user changes a URL, you’ll also need **@angular/router**. 
 
-Check out this full-fledged animation [demo](http://animationsftw.in/#/) with accompanying [presentation](https://www.youtube.com/watch?v=JhNo3Wvj6UQ&feature=youtu.be&t=2h47m53s), shown at the AngularConnect conference in November 2017.
 
 ## How this document is organized
 
@@ -181,15 +180,9 @@ For our example, we'll name the trigger `openClose`, and attach it to the `butto
   <img src="generated/images/guide/animations/triggering-the-animation-500.png" alt="triggering the animation">
 </figure>
 
-Here's the trigger function that describes and names the new trigger: 
-
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
-region="trigger">
- </code-example>
-
 <div class="l-sub-section">
 
-Within each trigger() function call, an element can only be in one state at any given time. However, it is possible for multiple triggers to be active at once.
+Within each `trigger()` function call, an element can only be in one state at any given time. However, it is possible for multiple triggers to be active at once.
 </div>
 
 ### Defining and attaching animations to the HTML template
@@ -209,11 +202,6 @@ When you have defined an animation trigger for a component, you can attach it to
 where `triggerName` is the name of the trigger, and  `expression` evaluates to a defined animation state.  
 The animation is executed or triggered when the expression value changes to a new state. 
 
-<div class="l-sub-section">
-
-The trigger is bound to the component in the component metadata, under the `@Component` decorator using the `animations:` property. In the HTML template, that same trigger appears under the HTML element to be animated. 
-
-</div>
 
 #### HTML template file
 
@@ -224,6 +212,12 @@ region="compare">
 In the above code snippet, when the `isOpen` expression evaluates to a defined state: `open` or `closed`, it will notify the trigger `openClose` of a state change. It is then up to `openClose` code to handle the state change and kick off a state change animation.
 
 For elements entering or leaving a page (inserted or removed  from the DOM), you can make the animation conditional – for example, use `*ngIf` with the animation trigger in the HTML template.
+
+<div class="l-sub-section">
+
+The trigger is bound to the component in the component metadata, under the `@Component` decorator using the `animations:` property. In the HTML template, that same trigger appears under the HTML element to be animated. 
+
+</div>
 
 ### Code sample, simple transition
 
@@ -380,7 +374,7 @@ For our purposes here, saying that an element is entering or leaving a view is e
 
 </div>
 
-Now we will add a new behavior: on initial page load, the button appears to fly onto the page from the left, entering in the `open` state. 
+Now we will add a new behavior: on initial page load, the button appears to fly onto the page from the left: 
 
  <code-example path="animations-guide/src/app/hero-list-enter-leave.component.ts" title="src/app/hero-list-enter-leave.component.ts" region="animationdef">
  </code-example>
@@ -449,7 +443,7 @@ However, selective child animations can still be run on a disabled parent in one
 
 A special animation control binding called `@.disabled` can be placed on an HTML element to disable animations on that element, as well as any inner animations for elements nested within the disabled element. When true, the `@.disabled` binding prevents all animations from rendering. 
 
-The code sample below shows how to use this feature. Note that the HTML template code is embedded inside the component code in this example:
+The code sample below shows how to use this feature:
 
 <code-tabs>
  
@@ -461,7 +455,8 @@ The code sample below shows how to use this feature. Note that the HTML template
  
  </code-tabs>
  
-The `@childAnimation` trigger will not animate because the `@.disabled` binding (when true) prevents it from happening.
+
+When the `@.disabled` binding is  true, the `@childAnimation` trigger will not kick-off. 
 
 Note that `@.disabled` disables all animations running on the same element. You can't selectively disable multiple animations on a single element.
 
@@ -519,10 +514,6 @@ These methods are:
 * `query([...], { /* options */ })`
 
 
-<code-example path="animations-guide/src/app/open-close.component.3.ts" title="src/app/open-close.component.ts" region="runtime">
- </code-example>
-
-In the above code snippet, both time and opacity inputs will be replaced during runtime.
 
 [AnimationOptions](https://angular.io/api/animations/AnimationOptions) allow you to reuse an animation across different components. Create a reusable animation in a seperate .ts file  using the [animation()](https://angular.io/api/animations/animation) method and export it as a const variable. You can then reuse it in any of your app components using the [useAnimation()](https://angular.io/api/animations/useAnimation) API.
 
@@ -530,7 +521,10 @@ In the above code snippet, both time and opacity inputs will be replaced during 
 <code-example path="animations-guide/src/app/animations.ts" title="src/app/animations.ts">
  </code-example>
 
-In the above code snippet, `transAnimation` is made reusable by declaring it as an export variable.  You can import the reusable `transAnimation` in your component class and reuse it using the `useAnimation()` method as shown below:
+In the above code snippet, `transAnimation` is made reusable by declaring it as an export variable.  
+Note that the height, opacity, backgroundcolor and time inputs will be replaced during runtime.
+
+You can import the reusable `transAnimation` in your component class and reuse it using the `useAnimation()` method as shown below:
 
 <code-example path="animations-guide/src/app/open-close.component.3.ts" title="src/app/open-close.component.ts" region="reusable">
  </code-example>
@@ -632,8 +626,7 @@ The `query()` function allows you to find inner elements within the element that
 
 The `stagger()` function allows you to define a timing gap between each queried item that is animated and thus animates a bunch of elements with a delay between them.
 
-
-This [demo](http://animationsftw.in/#/) shows an example of an animation involving multiple elements in a grid. The **Advanced** tab contains three image galleries, each consisting of a grid with tiled photo images. 
+The live example shows an animation involving multiple elements in a grid. The **Advanced** tab contains three image galleries, each consisting of a grid with tiled photo images. 
 
 The page opens with an introductory sequence. To see the portion that is relevant to the above `query()` description, click **Advanced**. The entire grid for Gallery One cascades in, with a slight delay from row to row from the bottom up. Within each row, the elements slide down and fade into place starting from right to left.
 
@@ -653,7 +646,7 @@ This animation does the following:
 
 * Animate each element in over 0.5 second using a custom-defined easing curve, simultaneously fading it in and un-transforming it at the same time.
 
-In addition to the page animation that runs when you click **Advanced** from any other tab, there are additional animations when transitioning between Gallery Two, Gallery Three, and back to Gallery One again. You can review the code snippets embedded in the demo to see small differences in the `transition()` statements and animation parameters.
+In addition to the page animation that runs when you click **Advanced** from any other tab, there are additional animations when transitioning between Gallery Two, Gallery Three, and back to Gallery One again. You can review the code snippets embedded in live example to see small differences in the `transition()` statements and animation parameters.
 
 ### Parallel animation using group() fucntion
 
@@ -683,7 +676,7 @@ A second function called `sequence()` lets you run those same animations one aft
 
 ### Filter animation example
 
-Let’s take a look at another animation on this same demo page. In the upper left-hand corner of the **Advanced** page, enter some text into the “FILTER RESULTS” text box, such as “COOL” or “STYLE”.
+Let’s take a look at another animation on the live example page. In the upper left-hand corner of the **Advanced** page, enter some text into the “FILTER RESULTS” text box, such as “COOL” or “STYLE”.
 
 The filter works real-time as you type. Elements (images) leave the page as the filter gets progressively stricter, when you type each new letter. The images successively re-enter the page, as you delete each letter in the filter box.
 
@@ -799,3 +792,7 @@ Advanced animation features, including reusable animations, `animateChild()`, an
  </tr>
 
 </table>
+
+## Related resources
+
+Check out this full-fledged animation [demo](http://animationsftw.in/#/) with accompanying [presentation](https://www.youtube.com/watch?v=JhNo3Wvj6UQ&feature=youtu.be&t=2h47m53s), shown at the AngularConnect conference in November 2017.
