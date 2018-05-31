@@ -628,9 +628,7 @@ The `query()` function allows you to find inner elements within the element that
 
 The `stagger()` function allows you to define a timing gap between each queried item that is animated and thus animates a bunch of elements with a delay between them.
 
-The live example shows an animation involving multiple elements in a grid. The **Advanced** tab contains three image galleries, each consisting of a grid with tiled photo images. 
-
-The page opens with an introductory sequence. To see the portion that is relevant to the above `query()` description, click **Advanced**. The entire grid for Gallery One cascades in, with a slight delay from row to row from the bottom up. Within each row, the elements slide down and fade into place starting from right to left.
+The `Filter/Stagger` tab in live example shows a list of heroes with an introductory sequence. The entire list of heroes cascades in, with a slight delay from top to bottom. 
 
 ### Page entry query stagger example
 
@@ -644,11 +642,10 @@ This animation does the following:
 
 * For each of these elements, use `style()` to set the same initial style for the element – make it invisible and using transform to move it out of position so that it can slide down into place.
 
-* Use `stagger()` to delay each animation by 30 milliseconds, starting at the bottom of the page. 
+* Use `stagger()` to delay each animation by 30 milliseconds. 
 
 * Animate each element in over 0.5 second using a custom-defined easing curve, simultaneously fading it in and un-transforming it at the same time.
 
-In addition to the page animation that runs when you click **Advanced** from any other tab, there are additional animations when transitioning between Gallery Two, Gallery Three, and back to Gallery One again. You can review the code snippets embedded in live example to see small differences in the `transition()` statements and animation parameters.
 
 ### Parallel animation using group() fucntion
 
@@ -678,9 +675,9 @@ A second function called `sequence()` lets you run those same animations one aft
 
 ### Filter animation example
 
-Let’s take a look at another animation on the live example page. In the upper left-hand corner of the **Advanced** page, enter some text into the “FILTER RESULTS” text box, such as “COOL” or “STYLE”.
+Let’s take a look at another animation on the live example page. Under the `Filter/Stagger` tab, enter some text into the "Search Heroes” text box, such as “Magnet” or “tornado”.
 
-The filter works real-time as you type. Elements (images) leave the page as the filter gets progressively stricter, when you type each new letter. The images successively re-enter the page, as you delete each letter in the filter box.
+The filter works real-time as you type. Elements leave the page as the filter gets progressively stricter, when you type each new letter. The heroes list successively re-enter the page, as you delete each letter in the filter box.
 
 The HTML template contains a trigger called filterAnimation:
 
