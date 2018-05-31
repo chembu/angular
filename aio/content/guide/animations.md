@@ -12,6 +12,8 @@ Animation provides the illusion of motion: elements change styling over time.
 
 Typically, animations involve multiple style _transformations_ over time – an HTML element can move, change color, grow or shrink, fade, or slide off the page. These changes can occur simultaneously or sequentially. You can control the timing of each of these transformations.
 
+<live-example></live-example>
+
 ## Audience assumptions
 
 Before starting with Angular animations, readers are advised to review the basic [Tutorial](tutorial) and [Architecture Overview](guide/architecture) sections.
@@ -72,7 +74,7 @@ The code sample assumes that you are using the Angular CLI.
 Import `BrowserAnimationsModule` that introduces all the animation capabilities 
 into your Angular root application module.
 
-<code-example path="animations-guide/src/app/app.module.1.ts" title="src/app/app.module.ts">
+<code-example path="animations/src/app/app.module.1.ts" title="src/app/app.module.ts">
 </code-example>
 
 
@@ -86,7 +88,7 @@ The root application module is typically located in `src/app` and is named `app.
 In component files that you plan to use animations, import specific animation functions from '
 `@angular/animations`.
 
-<code-example path="animations-guide/src/app/app.component.ts" title="src/app/app.component.ts" region="imports">
+<code-example path="animations/src/app/app.component.ts" title="src/app/app.component.ts" region="imports">
  </code-example>
 
 <div class="l-sub-section">
@@ -98,7 +100,7 @@ Find the list of Angular animation function available under the Animation DSL se
 
 In the component file, add a property called `animations:` to the `@Component` decorator.
 
-<code-example path="animations-guide/src/app/app.component.ts" title="src/app/app.component.ts" region="decorator">
+<code-example path="animations/src/app/app.component.ts" title="src/app/app.component.ts" region="decorator">
 </code-example>
 
 ## Simple transition
@@ -119,14 +121,14 @@ The `style()` function allows you to define a set of styles to associate with a 
 
 Let us see how Angular's `state()` function works together with the `style⁣­(⁠)` function to set CSS style attributes.
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="state1">
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="state1">
  </code-example>
 
  In the above code snippet, you can see how states can allow multiple style attributes to be set all at the same time. When the button shows as `Open` it has several style attributes: a height of 200 pixels, an opacity of 1, and a color of yellow. The `style()` function describes what the style should be when the right conditions arise.
 
 In the `closed` state, the button has a height of 100 pixels, an opacity of 0.5, and a background color of green. This example shows how states can allow multiple style attributes to be set all at the same time. 
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="state2">
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="state2">
  </code-example>
 
 ### Transitions and timing
@@ -140,13 +142,13 @@ For our example, let us provide a transition from `open` to `closed` state with 
 
 Note the arrow syntax used in the code snippet below: `=>` operator is used for unidirectional transitions, and `<=>` for bidirectional ones. Within the transition, `animate()` specifies how long the transition will take. In this case, the state change from open to closed takes one second, expressed here as '1s'.
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
 region="transition1">
  </code-example>
 
  We will also add a transition from `closed` to `open` state with a 0.5s duration.
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
 region="transition2">
  </code-example>
 
@@ -189,7 +191,7 @@ Within each `trigger()` function call, an element can only be in one state at an
 
 Animations are  defined in the metadata of the component that controls the HTML element to be animated. Put the code that defines your animations under the `animations:` property within the `@Component` decorator:
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
 region="component">
 </code-example>
 
@@ -205,7 +207,7 @@ The animation is executed or triggered when the expression value changes to a ne
 
 #### HTML template file
 
-<code-example path="animations-guide/src/app/open-close.component.html" title="src/app/open-close.component.html" 
+<code-example path="animations/src/app/open-close.component.html" title="src/app/open-close.component.html" 
 region="compare">
 </code-example> 
 
@@ -225,15 +227,15 @@ Here are the code files discussed on the transition example.
 
 <code-tabs>
 
- <code-pane title="src/app/open-close.component.ts" path="animations-guide/src/app/open-close.component.ts"
+ <code-pane title="src/app/open-close.component.ts" path="animations/src/app/open-close.component.ts"
  region="component">
  </code-pane>
 
- <code-pane title="src/app/open-close.component.html" path="animations-guide/src/app/open-close.component.html"
+ <code-pane title="src/app/open-close.component.html" path="animations/src/app/open-close.component.html"
  region="trigger">
  </code-pane>
 
- <code-pane title="src/app/open-close.component.css" path="animations-guide/src/app/open-close.component.css">
+ <code-pane title="src/app/open-close.component.css" path="animations/src/app/open-close.component.css">
   </code-pane>
 
 </code-tabs> 
@@ -313,12 +315,12 @@ Here’s another code sample using the wildcard state together with our previous
 This allows us to add new states without having to add separate transitions for each one.
 
 
-<code-example title="src/app/open-close.component.ts" path="animations-guide/src/app/open-close.component.ts" region="trigger-wildcard1">
+<code-example title="src/app/open-close.component.ts" path="animations/src/app/open-close.component.ts" region="trigger-wildcard1">
   </code-example>
 
 Use a double arrow syntax to specify state-to-state transitions in both directions:
 
-<code-example title="src/app/open-close.component.ts" path="animations-guide/src/app/open-close.component.ts" region="trigger-wildcard2">
+<code-example title="src/app/open-close.component.ts" path="animations/src/app/open-close.component.ts" region="trigger-wildcard2">
 </code-example>
 
 ### Wildcard state with 3 states
@@ -331,7 +333,7 @@ In our two-state button example, the wildcard isn’t that useful because there 
 
 In this example, we assume that all the transitions have a duration of 1 second.
 
-<code-example path="animations-guide/src/app/open-close.component.1.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.1.ts" title="src/app/open-close.component.ts" 
 region="trigger" language="typescript">
  </code-example>
 
@@ -346,7 +348,7 @@ To do this, list the more specific transitions _before_ the `* => *`.
 Use the wildcard `*` with a style setting to tell the animation to use whatever the current style value is, and animate with that. It's a fallback value that is used if the state that is being animated is not declared within the trigger.
 
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
 region="transition4">
  </code-example>	
 
@@ -354,14 +356,14 @@ region="transition4">
 
 If a trigger contains a boolean value as a binding value, then this value can be matched using a `transition()` expression that compares `true` and `false`, or `1` and `0`.
 
-<code-example path="animations-guide/src/app/open-close.component.2.html" title="src/app/open-close.component.html" region="trigger-boolean">
+<code-example path="animations/src/app/open-close.component.2.html" title="src/app/open-close.component.html" region="trigger-boolean">
  </code-example>
 
 In the code snippet above, the HTML template binds a `<div>` element to a trigger named `openClose`, with a status expression of `isOpen`, with possible values of `true` and `false`. This is an alternative to the practice of simply creating two named states of open and close.
 
 In the component code, under the `@Component` metadata under the `animations:` property, when the state evaluates to `true`, meaning "open" in this case, the associated HTML element's height is a wildcard style or default, basically saying to use whatever height the element already had before the animation started. When the element is "closed", the element animates to a height of 0, which basically makes it invisible.
 
- <code-example path="animations-guide/src/app/open-close.component.2.ts" title="src/app/open-close.component.ts" region="trigger-boolean">
+ <code-example path="animations/src/app/open-close.component.2.ts" title="src/app/open-close.component.ts" region="trigger-boolean">
  </code-example>
 
 ### Animate entering and leaving a view
@@ -376,7 +378,7 @@ For our purposes here, saying that an element is entering or leaving a view is e
 
 Now we will add a new behavior: on initial page load, the button appears to fly onto the page from the left: 
 
- <code-example path="animations-guide/src/app/hero-list-enter-leave.component.ts" title="src/app/hero-list-enter-leave.component.ts" region="animationdef">
+ <code-example path="animations/src/app/hero-list-enter-leave.component.ts" title="src/app/hero-list-enter-leave.component.ts" region="animationdef">
  </code-example>
 
 ### Void state
@@ -410,12 +412,12 @@ The `:enter` transition runs when any `*ngIf` or `*ngFor` views are placed on th
 
 The HTML template contains:
 
-<code-example path="animations-guide/src/app/insert-remove.component.html" title="src/app/insert-remove.component.html" region="insert-remove">
+<code-example path="animations/src/app/insert-remove.component.html" title="src/app/insert-remove.component.html" region="insert-remove">
  </code-example>
 
 In the component file, the enter transition first sets an initial opacity of 0, and then animates it to change that opacity to 1 as the element is inserted into the view:
 
-<code-example path="animations-guide/src/app/insert-remove.component.ts" title="src/app/insert-remove.component.ts" region="enter-leave-trigger">
+<code-example path="animations/src/app/insert-remove.component.ts" title="src/app/insert-remove.component.ts" region="enter-leave-trigger">
  </code-example>
 
 Note that this example does not need to use `state()`. 
@@ -447,10 +449,10 @@ The code sample below shows how to use this feature:
 
 <code-tabs>
  
-  <code-pane path="animations-guide/src/app/open-close.component.4.html" title="src/app/open-close.component.html" region="toggle-animation">
+  <code-pane path="animations/src/app/open-close.component.4.html" title="src/app/open-close.component.html" region="toggle-animation">
   </code-pane>
  
-  <code-pane path="animations-guide/src/app/open-close.component.4.ts" title="src/app/open-close.component.ts" region="toggle-animation">
+  <code-pane path="animations/src/app/open-close.component.4.ts" title="src/app/open-close.component.ts" region="toggle-animation">
   </code-pane>
  
  </code-tabs>
@@ -465,7 +467,7 @@ Note that `@.disabled` disables all animations running on the same element. You 
 To disable all animations for an entire Angular app, place the @.disabled host binding on the topmost Angular component.
 
 
-<code-example path="animations-guide/src/app/app.component.ts" title="src/app/app.component.ts" region="toggle-app-animations">
+<code-example path="animations/src/app/app.component.ts" title="src/app/app.component.ts" region="toggle-app-animations">
  </code-example>
 
 #### Multiple triggers and states active simultaneously
@@ -481,12 +483,12 @@ Even if inner animations are disabled, a parent animation can still use query() 
 The animation `trigger()` function emits _callbacks_ when it starts and when it finishes. 
 
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="events1">
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="events1">
  </code-example>
 
 In the HTML template, the animation event is passed back via `$event`, as `@trigger.start` and `@trigger.done`, where `trigger` is the name of the trigger being used. In our example, the trigger `openClose` appears as follows:
 
-<code-example path="animations-guide/src/app/open-close.component.3.html" title="src/app/open-close.component.html" region="callbacks">
+<code-example path="animations/src/app/open-close.component.3.html" title="src/app/open-close.component.html" region="callbacks">
  </code-example>
 
 A potential use for animation callbacks could be to cover for a slow API call, such as a database lookup. For example, the "InProgress" button could actually have its own looping animation where it pulsates or does some other visual motion while the back-end system operation finishes.
@@ -498,7 +500,7 @@ An animation can influence an end user to _perceive_ the operation as faster, ev
 Callbacks can also serve as a debugging tool, for example in conjunction with `console.log()` to view the application’s progress in a browser’s Developer JavaScript Console. The following code snippet creates console log output for our original example, button that has 2 states of `open` and `closed`.
 
 
-<code-example path="animations-guide/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="events">
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="events">
 </code-example>
 
 ## Reusable Animations
@@ -518,7 +520,7 @@ These methods are:
 [AnimationOptions](https://angular.io/api/animations/AnimationOptions) allow you to reuse an animation across different components. Create a reusable animation in a seperate .ts file  using the [animation()](https://angular.io/api/animations/animation) method and export it as a const variable. You can then reuse it in any of your app components using the [useAnimation()](https://angular.io/api/animations/useAnimation) API.
 
 
-<code-example path="animations-guide/src/app/animations.ts" title="src/app/animations.ts">
+<code-example path="animations/src/app/animations.ts" title="src/app/animations.ts">
  </code-example>
 
 In the above code snippet, `transAnimation` is made reusable by declaring it as an export variable.  
@@ -526,7 +528,7 @@ Note that the height, opacity, backgroundcolor and time inputs will be replaced 
 
 You can import the reusable `transAnimation` in your component class and reuse it using the `useAnimation()` method as shown below:
 
-<code-example path="animations-guide/src/app/open-close.component.3.ts" title="src/app/open-close.component.ts" region="reusable">
+<code-example path="animations/src/app/open-close.component.3.ts" title="src/app/open-close.component.ts" region="reusable">
  </code-example>
 
 ## Keyframes
@@ -541,7 +543,7 @@ Angular’s `keyframe()` function is similar to keyframes in CSS. Keyframes allo
 
 The code for the above might look like this:
 
-<code-example path="animations-guide/src/app/status-slider.component.ts" title="src/app/status-slider.component.ts" region="keyframes">
+<code-example path="animations/src/app/status-slider.component.ts" title="src/app/status-slider.component.ts" region="keyframes">
   </code-example>
 
 ### Offset
@@ -556,7 +558,7 @@ Defining offsets for keyframes is optional. If you omit them, evenly spaced offs
 
 The code with offsets specified would be as follows:
 
-<code-example path="animations-guide/src/app/status-slider.component.ts" title="src/app/status-slider.component.ts" region="keyframesWithOffsets">
+<code-example path="animations/src/app/status-slider.component.ts" title="src/app/status-slider.component.ts" region="keyframesWithOffsets">
   </code-example>
 
 
@@ -576,7 +578,7 @@ Here’s an example showing:
 
 The code snippet for this animation might look like this:
 
-<code-example path="animations-guide/src/app/open-close.component.1.ts" title="src/app/open-close.component.ts" region="trigger">
+<code-example path="animations/src/app/open-close.component.1.ts" title="src/app/open-close.component.ts" region="trigger">
  </code-example>
 
 ### Animatable properties and units
@@ -603,7 +605,7 @@ In these cases, you can use a special wildcard `*` property value under `style()
 
 In this example, we have a trigger called `shrinkOut`, used when an HTML element leaves the page. The animation takes whatever height the element has before it leaves, and animates from that height to zero:
 
-<code-example path="animations-guide/src/app/hero-list-auto.component.ts" title="src/app/hero-list-auto.component.ts" region="auto-calc"></code-example>
+<code-example path="animations/src/app/hero-list-auto.component.ts" title="src/app/hero-list-auto.component.ts" region="auto-calc"></code-example>
 
 ### Summary
 
@@ -634,7 +636,7 @@ The page opens with an introductory sequence. To see the portion that is relevan
 
 The page entry animation code is as follows:
 
-<code-example path="animations-guide/src/app/hero-list-page.component.ts" title="src/app/hero-list-page.component.ts" region="page-animations"></code-example>
+<code-example path="animations/src/app/hero-list-page.component.ts" title="src/app/hero-list-page.component.ts" region="page-animations"></code-example>
 
 This animation does the following:
 
@@ -655,7 +657,7 @@ animation `group()` function.
 
 In the following example, using groups both on `enter:` and `leave:` allows for two different timing configurations. Both are applied to the same element in parallel, but run independently of each other:
 
-<code-example path="animations-guide/src/app/hero-list-groups.component.ts" region="animationdef" title="src/app/hero-list-groups.component.ts (excerpt)" linenums="false"></code-example>
+<code-example path="animations/src/app/hero-list-groups.component.ts" region="animationdef" title="src/app/hero-list-groups.component.ts (excerpt)" linenums="false"></code-example>
 
 <div class="l-sub-section">
 
@@ -683,11 +685,11 @@ The filter works real-time as you type. Elements (images) leave the page as the 
 The HTML template contains a trigger called filterAnimation:
 
 
-<code-example path="animations-guide/src/app/hero-list-page.component.html" title="src/app/hero-list-page.component.html" region="filter-animations"></code-example>
+<code-example path="animations/src/app/hero-list-page.component.html" title="src/app/hero-list-page.component.html" region="filter-animations"></code-example>
 
 The component file contains 3 transitions:
 
-<code-example path="animations-guide/src/app/hero-list-page.component.ts" title="src/app/hero-list-page.component.ts" region="filter-animations"></code-example>
+<code-example path="animations/src/app/hero-list-page.component.ts" title="src/app/hero-list-page.component.ts" region="filter-animations"></code-example>
 
 The animation does the following:
 
