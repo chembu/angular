@@ -22,9 +22,7 @@ Before starting with Angular animations, readers are advised to review the basic
 
 Angular's animation system is built on CSS functionality, which means you can animate any property that the browser considers animatable. This includes positions, sizes, transforms, colors, borders, and more. The W3C maintains a list of animatable properties on its [CSS Transitions](https://www.w3.org/TR/css-transitions-1/) page.
 
-The main Angular modules for animations are **@angular/animations** and **@angular/platform-browser**. 
-
-If you want to create route-based animations that kick off when the user changes a URL, you’ll also need **@angular/router**. 
+The main Angular modules for animations are **@angular/animations** and **@angular/platform-browser**. When you create a new project using the CLI, these dependencies are automatically added to your project.
 
 
 ## How this document is organized
@@ -50,26 +48,12 @@ uncomment the `web-animations-js` polyfill from the `polyfills.ts` file generate
  
  To make the code samples work, you’ll need to import the animation-specific modules along with standard Angular functionality. 
  
- ### Step 1: Dependencies
-
-Add **@angular/animations** and **@angular/platform-browser** to `package.json`. Specify "latest" for all modules, not just the animations.
-
-<code-example hideCopy language="json" title="package.json">
- {  
-   "dependencies": {  
-     "@angular/animations": "latest",  
-     "@angular/platform-browser": "latest",  
-     …  
-   }  
- }  
- </code-example>
-
 <div class="l-sub-section">
 
 The code sample assumes that you are using the Angular CLI.
 </div>
 
-### Step 2: Enable Animations Module
+### Step 1: Enable Animations Module
 
 Import `BrowserAnimationsModule` that introduces all the animation capabilities 
 into your Angular root application module.
@@ -83,9 +67,9 @@ into your Angular root application module.
 The root application module is typically located in `src/app` and is named `app.module.ts`.
 </div>
 
-### Step 3: Import animation functions into component files 
+### Step 2: Import animation functions into component files 
 
-In component files that you plan to use animations, import specific animation functions from '
+In component files that you plan to use animations, import specific animation functions from 
 `@angular/animations`.
 
 <code-example path="animations/src/app/app.component.ts" title="src/app/app.component.ts" region="imports">
@@ -93,10 +77,10 @@ In component files that you plan to use animations, import specific animation fu
 
 <div class="l-sub-section">
 
-Find the list of Angular animation function available under the Animation DSL section of this document.
+Find the list of Angular animation function available under the [Animation DSL section](guide/animations#animation-dsl) of this document.
 </div>
 
-### Step 4: Add animations: property inside @Component decorator
+### Step 3: Add animations: property inside @Component decorator
 
 In the component file, add a property called `animations:` to the `@Component` decorator.
 
@@ -117,14 +101,14 @@ Within Angular, these collections of _style_ attributes are called _states_, and
 ### Animation State and Styles
 Angular's `state()` functions allows you to define different states that you can call at the end of each transition. It takes two arguments: the first argument accepts a unique name like `open` or `closed` and the second argument accepts a `style()` function.
 
-The `style()` function allows you to define a set of styles to associate with a given state name.
+The `style()` function allows you to define a set of styles to associate with a given state name. Note that the style attributes must be in `camelCase`.
 
 Let us see how Angular's `state()` function works together with the `style⁣­(⁠)` function to set CSS style attributes.
 
 <code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="state1">
  </code-example>
 
- In the above code snippet, you can see how states can allow multiple style attributes to be set all at the same time. When the button shows as `Open` it has several style attributes: a height of 200 pixels, an opacity of 1, and a color of yellow. The `style()` function describes what the style should be when the right conditions arise.
+ In the above code snippet, you can see how states can allow multiple style attributes to be set all at the same time. When the button shows as `Open` it has several style attributes: a height of 200 pixels, an opacity of 1, and a background color of yellow. The `style()` function describes what the style should be when the right conditions arise.
 
 In the `closed` state, the button has a height of 100 pixels, an opacity of 0.5, and a background color of green. This example shows how states can allow multiple style attributes to be set all at the same time. 
 
@@ -191,7 +175,7 @@ Within each `trigger()` function call, an element can only be in one state at an
 
 Animations are  defined in the metadata of the component that controls the HTML element to be animated. Put the code that defines your animations under the `animations:` property within the `@Component` decorator:
 
-<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.1.ts" 
 region="component">
 </code-example>
 
@@ -207,7 +191,7 @@ The animation is executed or triggered when the expression value changes to a ne
 
 #### HTML template file
 
-<code-example path="animations/src/app/open-close.component.html" title="src/app/open-close.component.html" 
+<code-example path="animations/src/app/open-close.component.1.html" title="src/app/open-close.component.1.html" 
 region="compare">
 </code-example> 
 
@@ -231,7 +215,7 @@ Here are the code files discussed on the transition example.
  region="component">
  </code-pane>
 
- <code-pane title="src/app/open-close.component.html" path="animations/src/app/open-close.component.html"
+ <code-pane title="src/app/open-close.component.1.html" path="animations/src/app/open-close.component.1.html"
  region="trigger">
  </code-pane>
 
@@ -251,8 +235,14 @@ In this section we are expanding on the basic transition example discussed above
 
 ### Duration, delay, and easing
 
-The second argument of the transition fucntion is an `animate()` function that takes three arguments as a single string. This string may contain the following information:
 
+The transition function takes an array of functions that define the
+animation metadata for transitions. 
+
+The `animate` function (second argument of the transition function) accepts two input parameters: 
+timing and styles.
+
+The timing parameter takes a string defined in three parts:
 >`animate ('duration delay easing')`
 
 The first part, `duration`, is required. Duration can be expressed in milliseconds as a simple number without quotes, or in seconds with quotes and a time specifier. For example, a duration of a tenth of a second can be expressed as follows:
@@ -368,7 +358,7 @@ In the component code, under the `@Component` metadata under the `animations:` p
 
 ### Animate entering and leaving a view
 
-Up until this point, we haven’t had our single button enter or leave the page. We’ve assumed that the button starts out already on the page, and has three possible styles: open, closed, and inProgress.
+Up until this point, we haven’t shown how to animate elements entering or leaving a page. 
 
 <div class="l-sub-section">
 
@@ -376,7 +366,7 @@ For our purposes here, saying that an element is entering or leaving a view is e
 
 </div>
 
-Now we will add a new behavior: on initial page load, the button appears to fly onto the page from the left: 
+Now we will add a new behavior: when you add a hero to the list of heroes, it appears to fly onto the page from the left and, when removed from the list it appears to fly out to the right.
 
  <code-example path="animations/src/app/hero-list-enter-leave.component.ts" title="src/app/hero-list-enter-leave.component.ts" region="animationdef">
  </code-example>
@@ -464,11 +454,15 @@ Note that `@.disabled` disables all animations running on the same element. You 
 
 #### Disabling animations application-wide
 
-To disable all animations for an entire Angular app, place the @.disabled host binding on the topmost Angular component.
-
+To disable all animations for an entire Angular app, place the @.disabled host binding on the topmost Angular component. 
 
 <code-example path="animations/src/app/app.component.ts" title="src/app/app.component.ts" region="toggle-app-animations">
  </code-example>
+
+ <div class="l-sub-section">
+ 
+ Disabling animations application-wide is useful during end-to-end (E2E) testing.
+</div>
 
 #### Multiple triggers and states active simultaneously
 
@@ -497,7 +491,7 @@ Then, another animation can be called when the current animation finishes. For e
 
 An animation can influence an end user to _perceive_ the operation as faster, even when it isn’t. Thus, a simple animation can be a cost-effective way to keep users happy, rather than seeking to improve the speed of a server call and having compensate for circumstances beyond your control, such as an unreliable network connection.
 
-Callbacks can also serve as a debugging tool, for example in conjunction with `console.log()` to view the application’s progress in a browser’s Developer JavaScript Console. The following code snippet creates console log output for our original example, button that has 2 states of `open` and `closed`.
+Callbacks can also serve as a debugging tool, for example in conjunction with `console.warn()` to view the application’s progress in a browser’s Developer JavaScript Console. The following code snippet creates console log output for our original example, button that has 2 states of `open` and `closed`.
 
 
 <code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" region="events">
@@ -524,7 +518,7 @@ These methods are:
  </code-example>
 
 In the above code snippet, `transAnimation` is made reusable by declaring it as an export variable.  
-Note that the height, opacity, backgroundcolor and time inputs will be replaced during runtime.
+Note that the height, opacity, backgroundColor and time inputs will be replaced during runtime.
 
 You can import the reusable `transAnimation` in your component class and reuse it using the `useAnimation()` method as shown below:
 
