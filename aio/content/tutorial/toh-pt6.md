@@ -622,6 +622,16 @@ Here are the code files discussed on this page (all in the `src/app/` folder).
   </code-pane>
 </code-tabs>
 
+{@a dashboardomponent}
+#### _DashboardComponent_
+
+<code-tabs>
+  <code-pane 
+    title="src/app/dashboard/dashboard.component.html"
+    path="toh-pt6/src/app/dashboard/dashboard.component.html">
+  </code-pane>
+</code-tabs>
+
 {@a herosearchcomponent}
 #### _HeroSearchComponent_
 

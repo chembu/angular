@@ -1,5 +1,6 @@
 // #docregion , init
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Hero } from './hero';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -17,4 +18,9 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
     return {heroes};
   }
+  // The method below returns the max number of ids plus one (+1)
+  // if heroes array is not empty or the initial number (11) if is empty.
+  genId(heroes: Hero[]): number {
+    return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 11;
+}
 }
