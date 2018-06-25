@@ -191,7 +191,7 @@ The animation is executed or triggered when the expression value changes to a ne
 
 #### HTML template file
 
-<code-example path="animations/src/app/open-close.component.1.html" title="src/app/open-close.component.1.html" 
+<code-example path="animations/src/app/open-close.component.1.html" title="src/app/open-close.component.html" 
 region="compare">
 </code-example> 
 
@@ -215,7 +215,7 @@ Here are the code files discussed on the transition example.
  region="component">
  </code-pane>
 
- <code-pane title="src/app/open-close.component.1.html" path="animations/src/app/open-close.component.1.html"
+ <code-pane title="src/app/open-close.component.html" path="animations/src/app/open-close.component.1.html"
  region="trigger">
  </code-pane>
 
