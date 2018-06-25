@@ -175,7 +175,7 @@ Within each `trigger()` function call, an element can only be in one state at an
 
 Animations are  defined in the metadata of the component that controls the HTML element to be animated. Put the code that defines your animations under the `animations:` property within the `@Component` decorator:
 
-<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.1.ts" 
+<code-example path="animations/src/app/open-close.component.ts" title="src/app/open-close.component.ts" 
 region="component">
 </code-example>
 
