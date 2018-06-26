@@ -705,8 +705,6 @@ Angular functions for animating multiple elements start with `query()` to find i
 
 Angular provides a domain-specific language (DSL) for animations. See @angular/animations module in the [API reference](api) for a listing and syntax of core functions and related data structures. 
 
-Advanced animation features, including reusable animations, `animateChild()`, and route-based animations will be covered in separate guide. Route-based animations require additional modules and imports.
-
 <table>
 
  <tr>
