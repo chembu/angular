@@ -95,7 +95,7 @@ For example, a button can show as either `open` or `closed`, depending on the us
 Within Angular, these collections of _style_ attributes are called _states_, and each state can be associated with a name like `open` or `closed`.
 
 <figure>
-  <img src="generated/images/guide/animations/open-closed-500.png" alt="open and closed states">
+  <img src="generated/images/guide/animations/open-closed.png" alt="open and closed states">
 </figure>
 
 ### Animation State and Styles
@@ -163,7 +163,7 @@ The `trigger()` function describes the property name that should be watched for 
 For our example, we'll name the trigger `openClose`, and attach it to the `button` element. The trigger describes the open and closed states, and the timings for the two transitions.  
 
 <figure>
-  <img src="generated/images/guide/animations/triggering-the-animation-500.png" alt="triggering the animation">
+  <img src="generated/images/guide/animations/triggering-the-animation.png" alt="triggering the animation">
 </figure>
 
 <div class="l-sub-section">
@@ -318,7 +318,7 @@ Use a double arrow syntax to specify state-to-state transitions in both directio
 In our two-state button example, the wildcard isn’t that useful because there are only 2 possible states, `open` and `closed`. Wildcard states are better when an element in one particular state has multiple potential states that it could change to. If our button could change from `open` to either `closed` or something like `inProgress`, using a wildcard state could potentially reduce the amount of coding you’d have to write.
 
 <figure>
-  <img src="generated/images/guide/animations/wildcard-3-states-500.png" alt="wildcard state with 3 states">
+  <img src="generated/images/guide/animations/wildcard-3-states.png" alt="wildcard state with 3 states">
 </figure>
 
 In this example, we assume that all the transitions have a duration of 1 second.
@@ -567,7 +567,7 @@ Here’s an example showing:
 * A keyframes sequence inserted in the middle that causes the button to appear to pulsate irregularly over the course of that same 1-second timeframe.
 
 <figure>
-  <img src="generated/images/guide/animations/keyframes-pulsation-500.png" alt="keyframes with irregular pulsation">
+  <img src="generated/images/guide/animations/keyframes-pulsation.png" alt="keyframes with irregular pulsation">
 </figure>
 
 The code snippet for this animation might look like this:
