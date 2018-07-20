@@ -23,6 +23,7 @@ import { HEROES } from './mock-heroes';
       ])
     ]),
 // #enddocregion page-animations
+// #docregion increment
 // #docregion filter-animations
     trigger('filterAnimation', [
       transition(':enter, * => 0, * => -1', []),
@@ -42,6 +43,7 @@ import { HEROES } from './mock-heroes';
         ])
       ]),
     ]),
+ // #enddocregion  increment
 // #docregion page-animations
   ]
 })
