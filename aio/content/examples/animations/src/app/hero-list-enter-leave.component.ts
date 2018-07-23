@@ -21,8 +21,10 @@ import { Hero } from './hero';
     <ul class="heroes">
       <li *ngFor="let hero of heroes"
           [@flyInOut]="'in'" (click)="removeHero(hero.id)">
-          <span class="badge">{{ hero.id }}</span>
-          <span>{{ hero.name }}</span>
+          <div class="inner">
+            <span class="badge">{{ hero.id }}</span>
+            <span>{{ hero.name }}</span>
+          </div>
       </li>
     </ul>
   `,
